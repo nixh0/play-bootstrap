@@ -1,0 +1,12 @@
+@( fooForm: Form[forms.FooForm])(implicit request: play.mvc.Http.Request , messages: play.i18n.Messages)
+
+@main("Welcome to Play") {
+  <h1>Welcome to Play!</h1>
+
+  @b5.vertical.form(routes.HomeController.submitForm) { implicit vfc =>
+    @b5.email( fooForm("email"), '_label -> "Email", 'placeholder -> "example@mail.com" )
+    @b5.password( fooForm("password"), '_label -> "Password", 'placeholder -> "Password" )
+    @b5.checkbox( fooForm("remember"), '_text -> "Remember me", 'value -> true )
+    @b5.submit('class -> "btn btn-default"){ Sign in }
+  }
+}

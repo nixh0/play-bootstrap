@@ -1,0 +1,86 @@
+@(fooForm: Form[String], validationForm: Form[(String, String, Int, String)])(implicit request: MessagesRequestHeader)
+
+@import utils.BSVersion
+@import tags._
+@import helper.Implicits._
+
+@main("Play-Bootstrap", tab = "index") {
+	<div class="header-with-logo">
+		<div class="header-logo">
+			<img src="@routes.Assets.at("images/logo.gif")" width=100>
+			</div>
+		<div class="header-title">
+			<h1 id="play-bootstrap">Play-Bootstrap</h1>
+			<p class="lead">Play Framework library for Bootstrap</p>
+		</div>
+	</div>
+	<p>
+		This is a collection of input helpers and field constructors for
+		<a href="http://www.playframework.com" target="_blank">Play Framework</a> to render
+		<a href="http://getbootstrap.com" target="_blank">Bootstrap</a> HTML code.
+	</p>
+	<ul class="nav nav-tabs" id="myTab" role="tablist">
+		<li class="nav-item" role="presentation">
+			<button class="nav-link active" id="vertical-tab" data-bs-toggle="tab" data-bs-target="#vertical-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Vertical</button>
+		</li>
+		<li class="nav-item" role="presentation">
+			<button class="nav-link" id="horizontal-tab" data-bs-toggle="tab" data-bs-target="#horizontal-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Horizontal</button>
+		</li>
+		<li class="nav-item" role="presentation">
+			<button class="nav-link" id="inline-tab" data-bs-toggle="tab" data-bs-target="#inline-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Inline</button>
+		</li>
+	</ul>
+	<div id="myTabContent" class="tab-content">
+		<div class="tab-pane fade show active" id="vertical-tab-pane" role="tabpanel">
+			@bsExampleWithCode {
+				@b5.vertical.form(routes.Application.index) { implicit vfc =>
+					@b5.email( fooForm("email"), Symbol("_label") -> "Email", Symbol("placeholder") -> "example@mail.com" )
+					@b5.password( fooForm("password"), Symbol("_label") -> "Password", Symbol("placeholder") -> "Password" )
+					@b5.checkbox( fooForm("remember"), Symbol("_text") -> "Remember me", Symbol("value") -> true )
+					@b5.submit(Symbol("class") -> "btn btn-secondary"){ Sign in }
+				}
+			}{
+			@@.b5.vertical.form(routes.Application.index) { implicit vfc =>
+					@@.b5.email( fooForm("email"), Symbol("_label") -> "Email", Symbol("placeholder") -> "example@@mail.com" )
+					@@.b5.password( fooForm("password"), Symbol("_label") -> "Password", Symbol("placeholder") -> "Password" )
+					@@.b5.checkbox( fooForm("remember"), Symbol("_text") -> "Remember me", Symbol("value") -> true )
+					@@.b5.submit(Symbol("class") -> "btn btn-secondary"){ Sign in }
+				}
+			}
+		</div>
+		<div class="tab-pane fade" id="horizontal-tab-pane" role="tabpanel">
+			@bsExampleWithCode {
+				@b5.horizontal.form(routes.Application.index, "col-md-2", "col-md-10") { implicit hfc =>
+					@b5.email( fooForm("email"), Symbol("_label") -> "Email", Symbol("placeholder") -> "example@mail.com" )
+					@b5.password( fooForm("password"), Symbol("_label") -> "Password", Symbol("placeholder") -> "Password" )
+					@b5.checkbox( fooForm("remember"), Symbol("_text") -> "Remember me", Symbol("value") -> true )
+					@b5.submit(Symbol("class") -> "btn btn-secondary"){ Sign in }
+				}
+			}{
+				@@b3.horizontal.form(routes.Application.index, "col-md-2", "col-md-10") { implicit hfc =>
+					@@.b5.email( fooForm("email"), Symbol("_label") -> "Email", Symbol("placeholder") -> "example@@mail.com" )
+					@@.b5.password( fooForm("password"), Symbol("_label") -> "Password", Symbol("placeholder") -> "Password" )
+					@@.b5.checkbox( fooForm("remember"), Symbol("_text") -> "Remember me", Symbol("value") -> true )
+					@@.b5.submit(Symbol("class") -> "btn btn-secondary"){ Sign in }
+				}
+			}
+		</div>
+		<div class="tab-pane fade" id="inline-tab-pane" role="tabpanel">
+			@bsExampleWithCode {
+				@b5.inline.form(routes.Application.index) { implicit ifc =>
+					@b5.email( fooForm("email"), Symbol("_hiddenLabel") -> "Email", Symbol("placeholder") -> "example@mail.com" )
+					@b5.password( fooForm("password"), Symbol("_hiddenLabel") -> "Password", Symbol("placeholder") -> "Password" )
+					@b5.checkbox( fooForm("remember"), Symbol("_text") -> "Remember me", Symbol("value") -> true )
+					@b5.submit(Symbol("class") -> "btn btn-secondary"){ Sign in }
+				}
+			}{
+			@@.b5.inline.form(routes.Application.index) { implicit ifc =>
+					@@.b5.email( fooForm("email"), Symbol("_hiddenLabel") -> "Email", Symbol("placeholder") -> "example@@mail.com" )
+					@@.b5.password( fooForm("password"), Symbol("_hiddenLabel") -> "Password", Symbol("placeholder") -> "Password" )
+					@@.b5.checkbox( fooForm("remember"), Symbol("_text") -> "Remember me", Symbol("value") -> true )
+					@@.b5.submit(Symbol("class") -> "btn btn-secondary"){ Sign in }
+				}
+			}
+		</div>
+	</div>
+}

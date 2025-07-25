@@ -1,0 +1,10 @@
+@(startField: Field, startArgs: (Symbol,Any)*)(endField: Field, endArgs: (Symbol,Any)*)(globalArgs: (Symbol,Any)*)(implicit fc: b5.B5FieldConstructor, msgsProv: MessagesProvider)
+@b5.multifield( startField, endField )(globalArgs, startArgs ++ endArgs) { implicit cfc =>
+	<div class="input-daterange input-group" @toHtmlArgs(bs.Args.inner(globalArgs).toMap)>
+		@b5.text(startField, startArgs:_*)
+		<div class="input-group-prepend input-group-append">
+			<span class="input-group-text">to</span>
+		</div>
+		@b5.text(endField, endArgs:_*)
+	</div>
+}
